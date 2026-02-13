@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "@google/genai": "^1.41.0"
+  "@google/generative-ai": "^0.12.0",
+  "react": "...",
+  "react-dom": "..."
+}
+   
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
