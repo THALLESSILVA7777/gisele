@@ -5,7 +5,28 @@ import { QuizState, AIAnalysis } from './types';
 import { QuestionCard } from './components/QuestionCard';
 import { ProgressBar } from './components/ProgressBar';
 import { ResultView } from './components/ResultView';
-import { analyzeBriefing } from './services/geminiService';
+const handleAnalyze = async () => {
+  setIsAnalyzing(true);
+
+  try {
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        respostas: state.answers,
+      }),
+    });
+
+    const data = await response.json();
+    setAnalysis(data);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setIsAnalyzing(false);
+  }
+};
 
 const App: React.FC = () => {
   const [state, setState] = useState<QuizState>({
